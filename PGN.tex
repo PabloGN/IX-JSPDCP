@@ -1,0 +1,522 @@
+% Inicio
+
+\documentclass[xcolor=dvipsnames]{beamer}
+\usetheme[left,width=1.8cm, hideothersubsections,numbers,totalnumber,compress,sidebarshades]{PaloAlto}
+\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{items}[ball]
+\setbeamertemplate{blocks}[rounded][shadow=true]
+
+\usefonttheme{professionalfonts}% font de LaTeX
+\useinnertheme{rounded}
+
+% Colores
+\definecolor{micolor}{rgb}{0.25,0.1,0.25}
+\usecolortheme[named=micolor]{structure} % violet
+\setbeamercolor{normal text}{bg=violet!5,fg=black}
+
+\setbeamercolor*{palette primary}{use=structure,fg=micolor,bg=micolor!10}
+\setbeamercolor*{sidebar}{use=structure,fg=micolor,bg=,bg=micolor!10}
+
+\setbeamercolor*{palette sidebar primary}{use=structure,fg=micolor} 
+\setbeamercolor*{palette sidebar secondary}{use=structure,fg=micolor} 
+\setbeamercolor*{palette sidebar tertiary}{use=structure,fg=micolor} 
+\setbeamercolor*{palette sidebar quaternary}{use=structure,fg=micolor} 
+\setbeamercolor*{page number in sidebar}{fg=micolor}
+
+\setbeamercolor*{titlelike}{use=structure,fg=white, bg=micolor}
+
+\setbeamercolor{block title}{use=structure,fg=white,bg=structure.fg!75!black} 
+
+\logo{\incsvg{1.8cm}{EHU}}
+\setbeamercolor{logo}{fg=black,bg=micolor!10}
+
+% Paquetes
+
+\usepackage[spanish]{babel}     % Paquete de lenguaje español
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color,graphicx}
+\usepackage{eurosym}
+
+%  Hace saltar una línea entre párrafos
+% \addtolength{\parskip}{\baselineskip}
+%  Hace saltar unos puntos entre párrafos
+% \addtolength{\parskip}{5pt}
+\addtolength{\parskip}{5pt}
+
+
+\usepackage{latexsym} % Simbolos
+\usepackage{colortbl}%soporte para color en tablas
+\usepackage{euro}
+\usepackage{natbib}
+\bibliographystyle{plainnat}
+
+%  Hace saltar una línea entre párrafos
+% \addtolength{\parskip}{\baselineskip}
+%  Hace saltar unos puntos entre párrafos
+% \addtolength{\parskip}{5pt}
+\addtolength{\parskip}{5pt}
+%\usepackage{garamond}          % Usar tipo
+%\usepackage[urw-garamond]{mathdesign}
+\usepackage{libertine} 
+%usepackage[libertine]{newtxmath}
+%\usepackage{bera}
+
+
+% para tt
+\usepackage{courier}
+
+\usepackage{listings}
+\lstset{
+	language=bash, % Octave -> choose the language of the code
+	basicstyle=\scriptsize \ttfamily\bfseries, %  -> the size of the fonts used for the code
+	% 	basicstyle=\small\ttfamily, %  -> the size of the fonts used for the code
+	numbers=left, %  -> where to put the line-numbers
+	numberstyle=\tiny, %  -> size of the fonts used for the line-numbers
+	stepnumber=3, %  -> the step between two line-numbers.
+	numbersep=5pt, %  -> how far the line-numbers are from the code
+	backgroundcolor=\color{white}, %  -> sets background color (needs package)
+	showspaces=false, %  -> show spaces adding particular underscores
+	showstringspaces=false, %  -> underline spaces within strings
+	showtabs=false, %  -> show tabs within strings through particular underscores
+	% 	frame=single, %  -> adds a frame around the code
+	frame=ltrb,framesep=2pt, % Left,Top,Right,Bottom
+	tabsize=4, %  -> sets default tab-size to 2 spaces
+	captionpos=b, %  -> sets the caption-position to bottom
+	breaklines=true, %  -> sets automatic line breaking
+	breakatwhitespace=false, %  -> automatic breaks happen at whitespace
+	% 	morecomment=[l]{//}, %  -> displays comments in italics (language dependent)
+	% 	frame=shadowbox, % draw a frame around your source code with a blue shadow
+	% 	rulesepcolor=\color{blue}, % draw a frame around your source code with a blue shadow
+	% frame=ltrb,framesep=5pt,
+	keywordstyle=\ttfamily\bfseries\color{blue},
+	identifierstyle=\ttfamily\color{black},
+	commentstyle=\itshape\color{green},
+	stringstyle=\ttfamily\color{red},
+}
+
+\def\newblock{}
+
+\usepackage{url}
+\def\R2Lurl#1#2{\mbox{\href{#1}{\color{blue}\ttfamily #2}}}
+
+%%%%%%%%%%%%%% SVG
+%\include{svg}
+
+%\newcommand{\executeiffilenewer}[3]{%
+%	\ifnum\pdfstrcmp{\pdffilemoddate{#1}}%
+%	{\pdffilemoddate{#2}}>0%
+%	{\immediate\write18{#3}}\fi%
+%}
+
+
+% basado en 
+%How to include an SVG image in \LATEX de Johan B. C. Engelen
+% Insertar en bash y hacer svgtex cada vez que se añada un svg a la carpeta
+%svgtex(){
+%	for i in *.svg
+%	do
+%	inkscape -z -D --file=$i --export-pdf=${i%.*}.pdf --export-latex
+%		done
+%}
+
+\newcommand{\includesvg}[1]{%
+	%	\executeiffilenewer{#1.svg}{#1.pdf}%
+	%	{
+	%		inkscape -z -D --file=#1.svg --export-pdf=#1.pdf --export-latex
+	%		}%
+	\input{#1.pdf_tex}%
+}
+
+\newcommand{\incsvg}[2]{
+				\def\svgwidth{#1}
+				\input{#2.pdf_tex}
+}
+
+\newcommand{\Rojo}{ {\color{red} TODO: } }
+\newcommand{\tab}{\hspace{5mm}}
+
+\definecolor{purple}        {cmyk}{0.45, 0.86, 0   , 0   }
+
+\hypersetup{
+	linkcolor=blue,citecolor=purple,pagecolor=red,urlcolor=blue, anchorcolor = red
+}
+\hypersetup{
+	pdfborder={0 0 0}
+}
+
+
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+% % % % % % % % % % % % TÍTULO
+
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+
+
+
+\newcommand{\titulo}{``De tractores y routers''}
+\newcommand{\subtitulo}{Tecnosoberanía, Seguridad, Obsolescencia Programada y Software Libre\\IX~JSPDCP}
+
+
+% % rellenamos la info del fichero PDF
+\hypersetup{
+	pdftitle =
+	\subtitulo,
+	pdfauthor =
+	Pablo González Nalda (https://lsi.vc.ehu.eus/pablogn/),
+	pdfsubject=
+	\subtitulo,
+	pdfkeywords =
+	\subtitulo
+}
+
+
+\begin{document}
+	% \title[]{Navegación}
+	\title[]{\titulo}
+	\subtitle{\subtitulo}
+	
+	\author{Pablo González Nalda}
+	% \logo{\includegraphics[scale=0.13]{logoEHU}}
+	\logo{\incsvg{1.6cm}{EHU}}
+	\institute[LSI]{Depto. de Lenguajes y Sistemas Informáticos}
+	% \date{\today}
+	\date{29 de noviembre de 2017}
+	
+	\begin{frame}[plain]
+		\begin{columns}[c]
+			\begin{column}[t]{7.9cm}
+				\begin{figure}
+					\begin{center}
+						\incsvg{3.5cm}{EHU}\hfill
+						\incsvg{3cm}{EUI}
+					\end{center}
+				\end{figure}
+				\titlepage
+				\begin{center}
+					\textit{\tiny Modificado el \today}
+				\end{center}
+			\end{column}
+			\begin{column}[t]{1.8cm} % para centrar la pág de título es como la anchura del usetheme
+				\begin{figure}[b]
+					\vskip 6cm
+					\begin{center}
+						\R2Lurl{http://creativecommons.org/licenses/by-sa/2.5/es/}{\incsvg{1.8cm}{CC-logo}}
+						\\ \vskip 0.5cm
+						\R2Lurl{http://creativecommons.org/licenses/by-sa/2.5/es/}{\incsvg{1.8cm}{ccbysa}}
+					\end{center}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	\author{\scshape Contenidos}
+	
+	\begin{frame}
+		\frametitle{Contenidos de la presentación}
+		\tableofcontents[
+		% ...showing the active section in the context of other sections...
+		sectionstyle=show/show,
+		% ... while hiding subsections
+		subsectionstyle=hide/hide/hide
+		]
+	\end{frame}
+	
+	\AtBeginSection[] {
+		%                 \begin{frame}[plain]
+		% 				Sección \thesection{}
+		%                 \end{frame}
+		\begin{frame}
+			%                         \frametitle{
+			%                                 % Put in the section number
+			%                                         \sectionname{} \thesection{}%:
+			%                                 % Now also put in the section description
+			%                          %            [description]
+			%                                 }
+			% Generate the table of contents...
+			\tableofcontents[
+			% ...showing the active section in the context of other sections...
+			sectionstyle=show/shaded,
+			% ... while hiding subsections
+			subsectionstyle=hide/hide/hide
+			]
+		\end{frame}
+	}
+	
+	% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	
+	% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	
+	% EMPIEZA EL CONTENIDO
+	
+	% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	
+	% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	
+	
+	
+
+\section{Introducción}
+		\begin{frame}
+			\frametitle{Introducción}
+				\small
+				En esta presentación se busca fijar la atención sobre varios conceptos relacionados con la Seguridad Informática:
+				\begin{itemize}
+					\item Soberanía Tecnológica
+					\item Falta de seguridad en dispositivos conectados (Internet de las Cosas)
+					\item Obsolescencia Programada y reparaciones
+					\item Software Libre
+					\item Cuestiones legales
+				\end{itemize}
+				
+				Para ello comentaremos varias noticias, soluciones que se han dado y ciertas preguntas que se pueden hacer como conclusión.
+		\end{frame}
+
+\section{Noticias}
+	\subsection{Automoción}
+	%				\incsvg{3cm}{EUI}
+		\begin{frame}
+			\frametitle{Tractores}
+				\small
+				\R2Lurl{https://www.npr.org/sections/alltechconsidered/2017/04/09/523024776/farmers-look-for-ways-to-circumvent-tractor-software-locks}{Farmers To Circumvent Tractor Software Locks}
+				\begin{itemize}
+					\item \textit{``You're paying for the metal but \textbf{you don't own the electronic} parts technically. They do.''}\textit{``You don't buy the \textbf{right to repair} it''}
+					\item \textit{``cracked Ukrainian John Deere software from the \textbf{black market}.''}
+					\item \textit{``Farmers could damage the machines, like bypassing pollution \textbf{emissions controls} to get more horsepower.''}
+					
+				\end{itemize}
+				\R2Lurl{https://motherboard.vice.com/en_us/article/xykkkd/why-american-farmers-are-hacking-their-tractors-with-ukrainian-firmware}{Why American Farmers Are Hacking Their}
+				\R2Lurl{https://motherboard.vice.com/en_us/article/xykkkd/why-american-farmers-are-hacking-their-tractors-with-ukrainian-firmware}{Tractors With Ukrainian Firmware}
+				\begin{itemize}
+					\item \textit{``A license agreement John Deere required farmers \textbf{forbids nearly all repair and modification}, and prevents farmers from \textbf{suing} for any aspect of the software.''}
+					\item \textit{``What happens in 20 years when there's a new tractor out and \textbf{John Deere doesn't want to fix} these anymore?''}
+				\end{itemize}
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Coches}
+				\R2Lurl{https://www.wired.com/2015/07/hackers-remotely-kill-jeep-highway/}{Hackers Remotely Kill a Jeep on the Highway}
+				\begin{itemize}
+					\item \textit{``Software lets hackers \textbf{send commands} through the Jeep's \textbf{entertainment} system to its dashboard functions, \textbf{steering, brakes}, and transmission.''}
+%					\item \textit{``\ldots \textbf{rewriting the entertainment system} chip's firmware to plant their code.''}
+					 \item \textit{``That rewritten firmware is capable of sending commands through the car's internal network, known as a \textbf{CAN bus}.''}
+				\end{itemize}
+		\end{frame}
+
+	\subsection{Redes}
+		\begin{frame}
+			\frametitle{Routers}
+				\R2Lurl{https://www.tomsguide.com/us/home-router-security,news-19245.html}{Your Router's Security Stinks}
+				\begin{itemize}
+					\item \textit{``\textbf{Editor's Note:} The newly disclosed KRACK vulnerability leaves nearly all Wi-Fi networks at risk for an attack. \textbf{Update your router now.}''}
+					\item \textit{``You don't want to use the \textbf{router} from your ISP because they give away \textbf{millions} of them, and that makes them a prime \textbf{target}.''}
+					 \item \textit{``Many consumer-grade home-gateway devices fail to \textbf{notify} users if and \textbf{when firmware updates} become available''}
+				\end{itemize}
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{IoT}
+				\R2Lurl{https://www.tomsguide.com/us/secure-iot-devices,news-20362.html}{How to Secure Your IoT Devices}
+				\begin{itemize}
+					\item \textit{``Many vendors in the IoT space seem to have little or \textbf{no concern} regarding the safety and security of their customers''}
+					\item \textit{``Despite these serious security problems,'' Young said, ``\textbf{the vendor has not updated the firmware} in this device for over a year, even though they have since developed a somewhat less vulnerable firmware. Even worse, the vendor has stated they have no intention of encouraging their users to upgrade.''}
+					\item Actualizaciones con firma digital que dificultan soluciones.
+					\item Servicio Post-Venta, Garantía, Repuestos.
+				\end{itemize}
+		\end{frame}
+		
+	\subsection{Sistemas Ocultos}
+		\begin{frame}
+			\frametitle{iME}
+				\scriptsize
+				\R2Lurl{https://en.wikipedia.org/wiki/Intel\_Management\_Engine}{Intel Management Engine (ME)}:
+				\begin{itemize}
+					\item \R2Lurl{https://tech.slashdot.org/story/17/11/07/1041236/minix-intels-hidden-in-chip-operating-system}{MINIX: Intel's Hidden In-chip Operating System} en Slashdot.
+					\item \R2Lurl{https://lwn.net/SubscriberLink/738649/81007748bf15c1e5/}{Replacing x86 firmware with Linux and Go}
+					\item \R2Lurl{https://twitter.com/thenewstack/status/933182251864440837}{Intel releases security advisory in light of recent}
+					\R2Lurl{https://twitter.com/thenewstack/status/933182251864440837}{discovery of undisclosed Minix+Webserver running on CPUs}
+				\end{itemize}
+				\includegraphics[width=11cm]{elce-os.png}
+		\end{frame}
+		
+		
+		
+\section{Posibles soluciones}
+	\subsection{Reparaciones}
+		\begin{frame}
+			\frametitle{Reparaciones}
+				Un ejemplo de medida para solucionar los anteriores casos es el movimiento: \R2Lurl{https://repair.org/}{The Repair Association}:
+				
+				\textit{\small
+					``Americans \textbf{work} hard every day to keep our cars, computers, appliances, and other critical infrastructure operating smoothly.''
+				}
+				
+				 \textit{\small ``Repair is the lifeblood of local economies. Our members make \textbf{products last longer}, save owners' money, and \textbf{create local jobs}.''
+				}
+				
+				\R2Lurl{https://repair.org/information-technology}{The Firmware Trap:}
+				\textit{\small ``Because of Intellectual Property, they can claim that they're the only ones allowed to repair it.''
+				}
+				
+				La reparación y la modificación de los dispositivos son pasos fundamentales en la toma de \textbf{control y responsabilidad} de los dispositivos por los propietarios, además de un freno a la \textit{\textbf{obsolescencia programada}}.
+		\end{frame}
+		
+	\subsection{Stallman y la impresora}
+		\begin{frame}
+			\frametitle{Stallman, una impresora y el Software Libre}
+			\small
+			Stallman (RMS) fundó la \R2Lurl{https://www.fsf.org/}{Free Software Foundation (FSF)} y el \R2Lurl{https://www.gnu.org/}{Proyecto GNU} como respuesta a problemas como el de una impresora en la que necesitaban modificar su programa.
+
+			\begin{block}{Libertad como valor moral}
+				\textit{``He argues that freedom is vital for the sake of users and society as a \textbf{moral value}, and not merely for pragmatic reasons such as possibly developing technically superior software''}
+				
+				\footnotesize{(En Wikipedia, sobre \R2Lurl{https://www.gnu.org/philosophy/pragmatic.html}{Copyleft: Idealismo pragmático})}
+			\end{block}
+
+			En \R2Lurl{http://esr.ibiblio.org/?p=4386}{\footnotesize Why I think RMS is a fanatic, and why that matters} Eric Raymond critica esta visión de ``cruzada moral'' de RMS. Argumenta que la radicalidad ahuyenta a posibles defensores del SL.
+
+			El SL puede formar parte también de la solución a la \textit{obsolescencia programada}. Por ejemplo, las \textit{ROMs} de los móviles.
+		\end{frame}
+		
+		\begin{frame}
+			\frametitle{Software libre: Libertades.}
+			\small
+			\textit{Free as in freedom, not as in free beer}
+			
+			Libertades del software libre:
+			\begin{description}
+			\item [Libertad 0:] de \textbf{usar} el programa, con cualquier propósito.
+			\item [Libertad 1:] de estudiar cómo funciona el programa y \textbf{modificarlo}, adaptándolo a tus necesidades.
+			\item [Libertad 2:] de \textbf{distribuir copias} del programa, con lo cual puedes ayudar a tu prójimo.
+			\item[ Libertad 3:] de mejorar el programa y \textbf{hacer públicas esas mejoras} a los demás, de modo que toda la comunidad se beneficie.
+			\end{description}
+			\textit{\textbf{Viralidad de la licencia libre}:} todo software que incluya código protegido por una licencia libre viral debe ser software libre.
+			
+			\R2Lurl{https://www.gnu.org/licenses/license-list.es.html}{Lista de licencias}.
+		\end{frame}
+%		\begin{frame}
+%			\frametitle{Software propietario vs Software libre}
+%{\small
+%			\begin{columns}[c]
+%				\begin{column}[t]{5cm}
+%				    \begin{itemize}
+%				    \item	Centralizado
+%				    \item	Descendente \textit{(top-down)}
+%				    \item	Busca la perfección (!)
+%				    \item	Se usa cuando está completo
+%				    \item	Se renueva con poca frecuencia
+%				    \item	El negocio está en la venta
+%				    \item	Provoca dependencia
+%				    \item	Monopolio de la info: patentes
+%				    \end{itemize}
+%				\end{column}
+%				\begin{column}[t]{5cm}
+%				    \begin{itemize}
+%				    \item	Colaborativo \textit{(wiki)} \textit{(anárquico)}*
+%				    \item	Ascendente \textit{(bottom-up)}
+%				    \item	Evolutivo, como la Ciencia
+%				    \item	Se usa desde el principio
+%				    \item	Se renueva a menudo
+%				    \item	Negocio en el mantenimiento
+%				    \item	Proporciona independencia
+%				    \item	Circulación de la info
+%				    \end{itemize}
+%				\end{column}
+%			\end{columns}
+%
+%* Autoorganización (reglas locales y efecto global), emergencia.
+%% \R2Lurl{http://www.venganza.org/evidence/endorsements2/} {Venganza.org, Academic Endorsements}
+%
+%\R2Lurl{http://es.wikipedia.org/wiki/La_catedral_y_el_bazar}{La Catedral y el Bazar}: desarrollo de proyectos libres
+%}
+%		\end{frame}
+
+
+		\begin{frame}
+			\frametitle{OpenWRT}
+			
+			\R2Lurl{https://www.openwrt.org/}{OpenWRT.org} es un firmware libre de routers \R2Lurl{https://en.wikipedia.org/wiki/OpenWrt}{\small (Wikipedia)}
+			
+			\textit{\small ``Linksys built the firmware for their WRT54G series of wireless \textbf{routers} from publicly available code licensed under the \textbf{GPL}.''}
+			
+			\textit{\small ``Under the terms of that license, Linksys was required to make the source code of its modified version available under the \textbf{same license}, which in turn enabled independent developers to create additional \textbf{derivative versions}.''}
+			
+			\textit{\small ``Support was originally limited to the WRT54G series, but has since been \textbf{expanded} to include many other chipsets, manufacturers and device types.''
+			}
+		\end{frame}
+
+	\subsection{Cuestiones legales}
+		\begin{frame}
+			\frametitle{Cuestiones legales}
+			Cuestiones legales planteadas este año 2017:
+			
+			\R2Lurl{https://www.globaltelecomsbusiness.com/article/b136xdnvzd53f7/dt-chief-calls-for-cyber-security-updates-law}{DT chief calls for cybersecurity updates law}
+			Deutsche Telekom CEO Tim Hoettges has said \textit{``laws should be introduced that force hardware and software manufacturers to update products to curb cyber threats''}.
+			
+			\R2Lurl{https://krebsonsecurity.com/2017/08/new-bill-seeks-basic-iot-security-standards/}{New Bill Seeks Basic IoT Security Standards} \textit{Bill that would set baseline security standards for the government's purchase.}
+
+			\R2Lurl{https://www.natlawreview.com/article/cybersecurity-update-august-10-2017}{NTIA guide on cybersecurity communications:} \textit{``National Telecommunications and Information Administration (NTIA) issued guidance to help IoT manufacturers more effectively communicate cybersecurity and privacy information to consumers.''}
+		\end{frame}
+
+\section{En resumen}
+		\begin{frame}
+			\frametitle{En resumen}
+				
+			\begin{itemize}
+				\item ¿Hay (o debería haber) una \textbf{obligación legal} de suministrar \textbf{actualizaciones} de software (corrección de errores, nuevas funcionalidades) \textbf{o parches} de seguridad en dispositivos como routers o teléfonos móviles?
+
+				\item ¿Se puede hacer que sean partícipes de la seguridad y del control de los dispositivos a las personas que los usan? ¿Es \textbf{fácil usar el software} de configuración y diagnóstico de la seguridad?
+				
+				\item ¿Debe ser la seguridad \textbf{un derecho y una obligación} de los usuarios o de las empresas fabricantes?
+
+				\item Existe el \textbf{miedo} a las actualizaciones: \textit{``Si funciona no lo toques''}. \textbf{¿Funcionalidad o seguridad?}
+			\end{itemize}
+		\end{frame}
+
+
+
+	
+	% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	
+	% SE REPITE EL TÍTULO Y EL ÍNDICE
+	
+	% % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % % %
+	
+	\author{Pablo González Nalda}
+	
+	
+	\begin{frame}[plain]
+		\begin{columns}[c]
+			\begin{column}[t]{7.9cm}
+				\begin{figure}
+					\begin{center}
+						\incsvg{3.5cm}{EHU}\hfill
+						\incsvg{3cm}{EUI}
+					\end{center}
+				\end{figure}
+				\titlepage
+				\begin{center}
+					\textit{\tiny Modificado el \today}
+				\end{center}
+			\end{column}
+			\begin{column}[t]{1.8cm} % para centrar la pág de título es como la anchura del usetheme
+				\begin{figure}[b]
+					\vskip 6cm
+					\begin{center}
+						\R2Lurl{http://creativecommons.org/licenses/by-sa/2.5/es/}{\incsvg{1.8cm}{CC-logo}}
+						\\ \vskip 0.5cm
+						\R2Lurl{http://creativecommons.org/licenses/by-sa/2.5/es/}{\incsvg{1.8cm}{ccbysa}}
+					\end{center}
+				\end{figure}
+			\end{column}
+		\end{columns}
+	\end{frame}
+	
+	
+\end{document}
+
+
